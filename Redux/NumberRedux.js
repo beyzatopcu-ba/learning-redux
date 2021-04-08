@@ -5,8 +5,8 @@ const INITIAL_STATE = {
 
 // Action Types
 // Action tipleri bütün uygulama içerisinde unique olmalı
-const INCREASE_NUMBER = "number/increase_number";
-const DECREASE_NUMBER = "number/decrease_number";
+export const INCREASE_NUMBER = "number/increase_number";
+export const DECREASE_NUMBER = "number/decrease_number";
 const RESET = "number/reset";
 
 // Reducer
