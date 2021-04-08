@@ -15,11 +15,13 @@ const RESET = "number/reset";
 export const numberReducer = (state = INITIAL_STATE, action) => {
     const actionType = action.type;
 
+    // state.number = state.number + 1; // State'i doğrudan değiştirme
+    // State içerisinde değiştirelecek olan şeyi ayrı değişkene aldık.
+    let number = state.number;
+
     switch (actionType) {
         case INCREASE_NUMBER:
              // Sayıyı arttır
-             // state.number = state.number + 1; // State'i doğrudan değiştirme
-             let number = state.number;
 
              // Yeni state nesnesi oluştur
              // State'in yeni halini döndürürken, mutlaka yeni bir nesne olmalı
@@ -31,7 +33,6 @@ export const numberReducer = (state = INITIAL_STATE, action) => {
              return newState;
         case DECREASE_NUMBER:
              // Sayıyı azaltacak
-             let number = state.number;
 
              // Yeni state nesnesi oluşturup döndür
              // State'in yeni halini döndürürken, mutlaka yeni bir nesne olmalı
