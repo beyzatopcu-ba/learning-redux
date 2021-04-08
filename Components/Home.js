@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { INCREASE_NUMBER, DECREASE_NUMBER } from '../Redux/NumberRedux'
 
 import NumberDisplay from './NumberDisplay';
+import SayHello from './SayHello';
 
 const styles = StyleSheet.create({
     container: {
@@ -37,6 +38,7 @@ const Home = props => {
 
     return (
         <View style={styles.container}>
+            <SayHello />
             <NumberDisplay />
             <TouchableOpacity style={styles.button} onPress={_onPress_Increase}>
                 <Text>ARTTIR</Text>

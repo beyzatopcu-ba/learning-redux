@@ -15,8 +15,9 @@ const NumberDisplay = props => {
 // ilgilendiği state oluyor.
 // Buradan dönen nesne, component'e props olarak gidecek.
 const mapStateToProps = (state) => {
+
     return {
-        numberFromRedux: state.number,
+        numberFromRedux: state.numberState.number,
     };
 };
 
