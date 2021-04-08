@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { connect } from 'react-redux';
+import { login } from '../Redux/UsernameRedux';
 
 const styles = StyleSheet.create({
     container: {
@@ -33,9 +35,11 @@ const styles = StyleSheet.create({
 const HomeEgzersiz = props => {
 
     const [ username, setUsername ] = useState('');
+    const [ password, setPassword ] = useState('');
 
     const _onPress_Login = () => {
         // ...
+        props.login(username, password);
     }
 
     return (
@@ -46,16 +50,30 @@ const HomeEgzersiz = props => {
                     onChangeText={setUsername}
                 />
             </View>
+            <View style={styles.inputContainer}>
+                <TextInput
+                    placeholder={"Şifre"}
+                    onChangeText={setPassword}
+                />
+            </View>
             <TouchableOpacity
                 style={styles.loginButton}
                 onPress={_onPress_Login}>
                 <Text>Giriş Yap</Text>
             </TouchableOpacity>
             <View style={styles.infoContainer}>
-                <Text>Giriş yapıldı: beyzatopcu</Text>
+                <Text>{"Giriş yapıldı: " + props.username}</Text>
             </View>
         </View>
     );
 };
 
-export default HomeEgzersiz;
+const mapStateToProps = state => ({
+    username: state.userState.user,
+})
+
+const mapDispatchToProps = dispatch => ({
+    login: (username, password) => dispatch(login(username, password)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeEgzersiz);
