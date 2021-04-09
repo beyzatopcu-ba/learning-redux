@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -35,6 +35,7 @@ const HomeList = props => {
     console.log('Rendering HomeList');
 
     const [itemText, setItemText] = useState('');
+    const refItemText = useRef('');
     const dispatch = useDispatch();
 
     const shoppingListInRedux = useSelector(listSelector);
@@ -46,9 +47,9 @@ const HomeList = props => {
     }
 
     const _onPress_Add = () => {
-        console.log(`onPress_add: ${itemText}'i ekliyorum`);
+        console.log(`onPress_add: ${refItemText.current}'i ekliyorum`);
         console.log('Dispatch edeceğim.')
-        dispatch(addItem(itemText));
+        dispatch(addItem(refItemText.current));
     }
 
     return (
@@ -57,7 +58,7 @@ const HomeList = props => {
                 <View style={styles.inputContainer}>
                     <TextInput
                         placeholder={"İtem"}
-                        onChangeText={setItemText}
+                        onChangeText={(text) => {refItemText.current = text}}
                     />
                 </View>
                 <TouchableOpacity
