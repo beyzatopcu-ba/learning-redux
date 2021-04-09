@@ -13,11 +13,12 @@ import { store } from './Redux/ReduxManager';
 
 import Home from './Components/Home';
 import HomeEgzersiz from './Components/HomeEgzersiz';
+import HomeList from './Components/HomeList';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <HomeEgzersiz />
+      <HomeList/>
     </Provider>
   );
 };
