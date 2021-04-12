@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, View, Text } from 'react-native';
-import { connect } from 'react-redux';
-import { INCREASE_NUMBER, DECREASE_NUMBER } from '../Redux/NumberRedux'
+import { useDispatch, useSelector } from 'react-redux';
+import { INCREASE_NUMBER_REQUEST, numberSelector } from '../Redux/NumberRedux';
 
 import NumberDisplay from './NumberDisplay';
 import SayHello from './SayHello';
@@ -23,17 +23,16 @@ const styles = StyleSheet.create({
 });
 
 const Home = props => {
-    // mapDispatchToProps'tan dönen nesnedeki increaseNumberInRedux alanı,
-    // buraya props içerisinde gelecek.
-
-    // props.increaseNumberInRedux -> defined olacak
+    const dispatch = useDispatch();
 
     const _onPress_Increase = () => {
-        props.increaseNumberInRedux();
+        // Saga varken, UI tarafında bir değişiklik olmuyor.
+        dispatch({
+            type: INCREASE_NUMBER_REQUEST,
+        })
     }
 
     const _onPress_Decrease = () => {
-        props.decreaseNumberInRedux();
     }
 
     return (
@@ -50,23 +49,4 @@ const Home = props => {
     );
 };
 
-// mapDispatchToProps'tan dönen nesnedeki alanlar,
-// Home component'ine props olarak yansıyacak.
-const mapDispatchToProps = dispatch => {
-
-    const increaseNumberInRedux = () => {
-        // Bir action nesnesi oluşturup, onu dispatch eden bir fonksiyon
-        const action = {
-            // Action'ın tipini sayıyı arttırma olan INCREASE_NUMBER yaptık
-            type: INCREASE_NUMBER,
-        };
-        dispatch(action);
-    };
-
-    return {
-        increaseNumberInRedux,
-        decreaseNumberInRedux: () => dispatch({type: DECREASE_NUMBER})
-    }
-};
-
-export default connect(null, mapDispatchToProps)(Home);
+export default Home;

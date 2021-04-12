@@ -9,16 +9,18 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import { store } from './Redux/ReduxManager';
+import configureStore  from './Redux/ReduxManager';
 
 import Home from './Components/Home';
 import HomeEgzersiz from './Components/HomeEgzersiz';
 import HomeList from './Components/HomeList';
 
+const {store} = configureStore();
+
 const App = () => {
   return (
     <Provider store={store}>
-      <HomeList/>
+      <Home />
     </Provider>
   );
 };
