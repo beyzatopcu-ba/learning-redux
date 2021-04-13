@@ -15,6 +15,7 @@ import Home from './Components/Home';
 import HomeEgzersiz from './Components/HomeEgzersiz';
 import HomeList from './Components/HomeList';
 
+console.clear();
 const {store} = configureStore();
 
 const App = () => {

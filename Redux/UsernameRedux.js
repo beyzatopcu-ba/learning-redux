@@ -20,7 +20,6 @@ export const login = (username, password) => {
 // Reducer
 export const userReducer = (state = INITIAL_STATE, action) => {
 
-    console.log('user reducer');
 
     switch (action.type) {
         case LOGIN:

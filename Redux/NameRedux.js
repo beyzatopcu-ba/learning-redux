@@ -3,8 +3,10 @@ const INITIAL_STATE = {
     name: '',
 };
 
+export const nameSelector = globalState => globalState.nameState.name;
+
 // Action Types
-const CHANGE_NAME = "name/change_name";
+export const CHANGE_NAME = "name/change_name";
 
 // Action Creators
 export const changeName = (name) => {
@@ -17,11 +19,14 @@ export const changeName = (name) => {
 }
 
 // Reducer
-// action: {type: String, payload: {name}}
 export const nameReducer = (state = INITIAL_STATE, action) => {
+
+    console.log('nameReducer with action type ' + action.type
+                    + ' and with action data ' + action.payload);
 
     switch (action.type) {
         case CHANGE_NAME:
+            console.log('In CHANGE_NAME case: creating new state');
             // ismi değiştirecek
             let newName = action.payload.name;
             return {

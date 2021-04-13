@@ -32,8 +32,6 @@ const styles = StyleSheet.create({
 
 const HomeList = props => {
 
-    console.log('Rendering HomeList');
-
     const [itemText, setItemText] = useState('');
     const refItemText = useRef('');
     const dispatch = useDispatch();
@@ -47,8 +45,6 @@ const HomeList = props => {
     }
 
     const _onPress_Add = () => {
-        console.log(`onPress_add: ${refItemText.current}'i ekliyorum`);
-        console.log('Dispatch edeceğim.')
         dispatch(addItem(refItemText.current));
     }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { connect } from 'react-redux';
-import { changeName } from '../Redux/NameRedux';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeName, nameSelector } from '../Redux/NameRedux';
 
 const styles = StyleSheet.create({
     container: {
@@ -24,12 +24,18 @@ const styles = StyleSheet.create({
     }
 });
 
+
 const SayHello = props => {
 
+    console.log('rendering SayHello');
+
     const [name, setName] = useState('');
+    const nameInRedux = useSelector(nameSelector);
+    const dispatch = useDispatch();
 
     const _onPress_SayHello = () => {
-        props.changeName(name);
+        console.log('onPress: dispatching CHANGE_NAME action');
+        dispatch(changeName(name));
     }
 
     return (
@@ -42,18 +48,10 @@ const SayHello = props => {
             <TouchableOpacity style={styles.button} onPress={_onPress_SayHello}>
                 <Text>Merhaba De</Text>
             </TouchableOpacity>
-            <Text>{"Merhaba " + props.nameInRedux}</Text>
+            <Text>{"Merhaba " + nameInRedux}</Text>
         </View>
     );
 };
 
-const mapStateToProps = state => ({
-    nameInRedux: state.nameState.name,
-});
 
-const mapDispatchToProps = dispatch => ({
-    changeName: (name) => dispatch(changeName(name)),
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(SayHello);
+export default SayHello;
