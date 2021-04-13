@@ -22,7 +22,7 @@ const {store} = configureStore();
 const App = () => {
   return (
     <Provider store={store}>
-      <Home />
+      <UserList />
     </Provider>
   );
 };

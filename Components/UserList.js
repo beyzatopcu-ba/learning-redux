@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {addItem, listSelector} from '../Redux/ListRedux';
-import { getUsersRequest, userListSelector } from '../Redux/UserRedux';
+import { getUsersRequest, isLoadingSelector, userListSelector } from '../Redux/UserRedux';
 
 const styles = StyleSheet.create({
     container: {
@@ -87,6 +87,8 @@ const users = [
 const HomeList = props => {
 
     const userList = useSelector(userListSelector);
+    const isLoading = useSelector(isLoadingSelector);
+
     const dispatch = useDispatch();
 
     const renderItem = ({item}) => {
@@ -100,19 +102,42 @@ const HomeList = props => {
         dispatch(getUsersRequestAction);
     }
 
+    const ListEmptyComponent = props => {
+        let text;
+        if (userList === null) {
+            text = "Kullanıcıları görüntülemek yukarıdaki butona basın"
+        }
+
+        if (isLoading) {
+            text = "Yükleniyor"
+        }
+        else if (!isLoading && userList?.length === 0) {
+            text = "Kullanıcı yok"
+        }
+        return (
+            <Text>{text}</Text>
+        )
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
                 <TouchableOpacity
                     style={styles.button}
                     onPress={_onPress_GetUsers}>
-                    <Text>Kullanıcıları getir</Text>
+                    {
+                        isLoading ?
+                        <ActivityIndicator />
+                        :
+                        <Text>Kullanıcıları getir</Text>
+                    }
                 </TouchableOpacity>
                 <View style={{ flex: 0.6 }}>
                     <FlatList
                         data={userList}
                         renderItem={renderItem}
                         keyExtractor={(item, index) => item.id}
+                        ListEmptyComponent={ListEmptyComponent}
                     />
                 </View>
             </View>

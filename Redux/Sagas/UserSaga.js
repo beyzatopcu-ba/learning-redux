@@ -12,11 +12,8 @@ const getUsers = async (dummy) => {
 }
 
 function* workerGetUsers() {
-
     const users = yield call(getUsers, 'dummy');
-
     yield put(setUsers(users));
-
 }
 
 
