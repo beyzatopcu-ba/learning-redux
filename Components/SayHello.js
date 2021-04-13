@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeName, nameSelector } from '../Redux/NameRedux';
+import { changeName, changeNameForSaga, nameSelector } from '../Redux/NameRedux';
 
 const styles = StyleSheet.create({
     container: {
@@ -34,8 +34,8 @@ const SayHello = props => {
     const dispatch = useDispatch();
 
     const _onPress_SayHello = () => {
-        console.log('onPress: dispatching CHANGE_NAME action');
-        dispatch(changeName(name));
+        console.log('onPress: dispatching CHANGE_NAME_FOR_SAGA action');
+        dispatch(changeNameForSaga(name));
     }
 
     return (

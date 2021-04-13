@@ -14,6 +14,7 @@ import configureStore  from './Redux/ReduxManager';
 import Home from './Components/Home';
 import HomeEgzersiz from './Components/HomeEgzersiz';
 import HomeList from './Components/HomeList';
+import UserList from './Components/UserList';
 
 console.clear();
 const {store} = configureStore();

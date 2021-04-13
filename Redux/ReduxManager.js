@@ -5,14 +5,14 @@ import rootSaga from './Sagas/RootSaga';
 
 import { numberReducer } from './NumberRedux';
 import { nameReducer } from './NameRedux';
-import { userReducer } from './UsernameRedux';
 import { listReducer } from './ListRedux';
+import { userReducer } from './UserRedux';
 
 const rootReducer = combineReducers({
     numberState: numberReducer,
     nameState: nameReducer,
-    userState: userReducer,
     shoppingList: listReducer,
+    user: userReducer,
 });
 
 // Saga middleware'imizi oluşturualım
