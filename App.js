@@ -15,6 +15,7 @@ import Home from './Components/Home';
 import HomeEgzersiz from './Components/HomeEgzersiz';
 import HomeList from './Components/HomeList';
 import UserList from './Components/UserList';
+import SagaUI from './Components/SagaUI';
 
 console.clear();
 const {store} = configureStore();
@@ -22,7 +23,7 @@ const {store} = configureStore();
 const App = () => {
   return (
     <Provider store={store}>
-      <UserList />
+      <SagaUI />
     </Provider>
   );
 };

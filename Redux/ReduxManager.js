@@ -7,12 +7,14 @@ import { numberReducer } from './NumberRedux';
 import { nameReducer } from './NameRedux';
 import { listReducer } from './ListRedux';
 import { userReducer } from './UserRedux';
+import { effectsReducer } from './EffectsRedux';
 
 const rootReducer = combineReducers({
     numberState: numberReducer,
     nameState: nameReducer,
     shoppingList: listReducer,
     user: userReducer,
+    effects: effectsReducer,
 });
 
 // Saga middleware'imizi oluşturualım
