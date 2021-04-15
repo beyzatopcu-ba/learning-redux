@@ -31,12 +31,8 @@ export const changeNameForSaga = (name) => {
 // Reducer
 export const nameReducer = (state = INITIAL_STATE, action) => {
 
-    console.log('nameReducer with action type ' + action.type
-                    + ' and with action data ' + action.payload);
-
     switch (action.type) {
         case CHANGE_NAME:
-            console.log('In CHANGE_NAME case: creating new state');
             // ismi değiştirecek
             let newName = action.payload.name;
             return {

@@ -27,14 +27,11 @@ const styles = StyleSheet.create({
 
 const SayHello = props => {
 
-    console.log('rendering SayHello');
-
     const [name, setName] = useState('');
     const nameInRedux = useSelector(nameSelector);
     const dispatch = useDispatch();
 
     const _onPress_SayHello = () => {
-        console.log('onPress: dispatching CHANGE_NAME_FOR_SAGA action');
         dispatch(changeNameForSaga(name));
     }
 
